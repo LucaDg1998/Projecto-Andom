@@ -91,19 +91,8 @@ bool Alarma1 = true, Alarma2 = true, Alarma3 = true, Alarma4 = true, Alarma5 = t
 bool A_state = 0; //Variable de estado logico de la salida del la alarma intermitente
 int valor_m1 = 0, valor_m2 = 0, valor_m3 = 0, valor_m4 = 0, valor_m5 = 0, valor_m6 = 0;
 //--------------------------------------------------------------------------------------
-bool Solicitud_m1a = false, Solicitud_m1b = false, Solicitud_m1c = false, Solicitud_m1d = false, Solicitud_m1e = false, Solicitud_m1f = false;
-bool Solicitud_m2a = false, Solicitud_m2b = false, Solicitud_m2c = false, Solicitud_m2d = false, Solicitud_m2e = false, Solicitud_m2f = false;
-bool Solicitud_m3a = false, Solicitud_m3b = false, Solicitud_m3c = false, Solicitud_m3d = false, Solicitud_m3e = false, Solicitud_m3f = false;
-bool Solicitud_m4a = false, Solicitud_m4b = false, Solicitud_m4c = false, Solicitud_m4d = false, Solicitud_m4e = false, Solicitud_m4f = false;
-bool Solicitud_m5a = false, Solicitud_m5b = false, Solicitud_m5c = false, Solicitud_m5d = false, Solicitud_m5e = false, Solicitud_m5f = false;
-bool Solicitud_m6a = false, Solicitud_m6b = false, Solicitud_m6c = false, Solicitud_m6d = false, Solicitud_m6e = false, Solicitud_m6f = false;
-//--------------------------------------------------------------------------------------
-bool Atendido_m1a = false, Atendido_m1b = false, Atendido_m1c = false, Atendido_m1d = false, Atendido_m1e = false, Atendido_m1f = false;
-bool Atendido_m2a = false, Atendido_m2b = false, Atendido_m2c = false, Atendido_m2d = false, Atendido_m2e = false, Atendido_m2f = false;
-bool Atendido_m3a = false, Atendido_m3b = false, Atendido_m3c = false, Atendido_m3d = false, Atendido_m3e = false, Atendido_m3f = false;
-bool Atendido_m4a = false, Atendido_m4b = false, Atendido_m4c = false, Atendido_m4d = false, Atendido_m4e = false, Atendido_m4f = false;
-bool Atendido_m5a = false, Atendido_m5b = false, Atendido_m5c = false, Atendido_m5d = false, Atendido_m5e = false, Atendido_m5f = false;
-bool Atendido_m6a = false, Atendido_m6b = false, Atendido_m6c = false, Atendido_m6d = false, Atendido_m6e = false, Atendido_m6f = false;
+bool solicitados[6][6];
+bool atendidos[6][6];
 //--------------------------------------------------------------------------------------
 int Alarmas_activas1 = 0;
 int Alarmas_activas2 = 0;
@@ -112,7 +101,7 @@ int Alarmas_actual2 = 0;
 int playerSong = 0;
 //--------------------------------------------------------------------------------------
 void printDetail(uint8_t type, int value);
-void alarmas_sonoras (int play);
+void reproductor(int play);
 void alarmas_sonoras2 ();
 //***************************************************************************************************
 
@@ -581,9 +570,9 @@ void loop() {
   /*--------------------------------------------------------------------------------------
                                          Maquina 1
     --------------------------------------------------------------------------------------*/
-  if (Solicitud_m1a == true) // si esta se encuentra armada  boton Mantenimiento
+  if (solicitados[0][0] == true) // si esta se encuentra armada  boton Mantenimiento
   {
-    if (Atendido_m1a == false) // si no ha sido atendida pulsando otra vez
+    if ( atendidos[0][0] == false) // si no ha sido atendida pulsando otra vez
     {
       digitalWrite(Alarm_out_M1_a, A_state);//Realiza el parpadeo deacuerdo a la funcion millis()
     }
@@ -592,9 +581,9 @@ void loop() {
     }
   }
   //--------------------------------------------------------------------------------------
-  if (Solicitud_m1b == true) // si esta se encuentra armada boton B
+  if (solicitados[0][1] == true) // si esta se encuentra armada boton B
   {
-    if (Atendido_m1b == false) // si no ha sido atendida pulsando otra vez
+    if (atendidos[0][1] == false) // si no ha sido atendida pulsando otra vez
     {
       digitalWrite(Alarm_out_M1_b, A_state);//Realiza el parpadeo deacuerdo a la funcion millis()
     }
@@ -603,9 +592,9 @@ void loop() {
     }
   }
   //--------------------------------------------------------------------------------------
-  if (Solicitud_m1c == true) // si esta se encuentra armada
+  if (solicitados[0][2] == true) // si esta se encuentra armada
   {
-    if (Atendido_m1c == false) // si no ha sido atendida pulsando otra vez
+    if (atendidos[0][2] == false) // si no ha sido atendida pulsando otra vez
     {
       digitalWrite(Alarm_out_M1_c, A_state);//Realiza el parpadeo deacuerdo a la funcion millis()
     }
@@ -614,9 +603,9 @@ void loop() {
     }
   }
   //--------------------------------------------------------------------------------------
-  if (Solicitud_m1d == true) // si esta se encuentra armada
+  if (solicitados[0][3] == true) // si esta se encuentra armada
   {
-    if (Atendido_m1d == false) // si no ha sido atendida pulsando otra vez
+    if (atendidos[0][3] == false) // si no ha sido atendida pulsando otra vez
     {
       digitalWrite(Alarm_out_M1_d, A_state);//Realiza el parpadeo deacuerdo a la funcion millis()
     }
@@ -625,9 +614,9 @@ void loop() {
     }
   }
   //--------------------------------------------------------------------------------------
-  if (Solicitud_m1e == true) // si esta se encuentra armada
+  if (solicitados[0][4] == true) // si esta se encuentra armada
   {
-    if (Atendido_m1e == false) // si no ha sido atendida pulsando otra vez
+    if (atendidos[0][4] == false) // si no ha sido atendida pulsando otra vez
     {
       digitalWrite(Alarm_out_M1_e, A_state);//Realiza el parpadeo deacuerdo a la funcion millis()
     }
@@ -636,9 +625,9 @@ void loop() {
     }
   }
   //--------------------------------------------------------------------------------------
-  if (Solicitud_m1f == true) // si esta se encuentra armada
+  if (solicitados[0][5] == true) // si esta se encuentra armada
   {
-    if (Atendido_m1f == false) // si no ha sido atendida pulsando otra vez
+    if (atendidos[0][5] == false) // si no ha sido atendida pulsando otra vez
     {
       digitalWrite(Alarm_out_M1_f, A_state);//Realiza el parpadeo deacuerdo a la funcion millis()
     }
@@ -651,9 +640,9 @@ void loop() {
   /*--------------------------------------------------------------------------------------
                                           Maquina 2
      --------------------------------------------------------------------------------------*/
-  if (Solicitud_m2a == true) // si esta se encuentra armada  boton A
+  if (solicitados[1][0] == true) // si esta se encuentra armada  boton A
   {
-    if (Atendido_m2a == false) // si no ha sido atendida pulsando otra vez
+    if (atendidos[1][0] == false) // si no ha sido atendida pulsando otra vez
     {
       digitalWrite(Alarm_out_M2_a, A_state);
       //Realiza el parpadeo deacuerdo a la funcion millis()
@@ -1042,7 +1031,7 @@ void loop() {
     Atendido_m1a = false;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras (1);
+    reproductor(1);
 
   }
   if ((Atendido_m1a == false)  && (Solicitud_m1a == true) && (valor_m1 == 1)) //Alarma atendida,detener musica e inidcador fijo
@@ -1050,7 +1039,7 @@ void loop() {
     Atendido_m1a = true;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m1a == true) && (Solicitud_m1a == true) && (valor_m1 == 1)) //apagar alarma
@@ -1070,7 +1059,7 @@ void loop() {
     Atendido_m1b = false;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras (2);
+    reproductor(2);
   }
 
   if ((Atendido_m1b == false) && (Solicitud_m1b == true) && (valor_m1 == 2)) //Alarma atendida,detener musica e inidcador fijo
@@ -1078,7 +1067,7 @@ void loop() {
     Atendido_m1b = true;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m1b == true) && (Solicitud_m1b == true) && (valor_m1 == 2)) //apagar alarma
@@ -1097,7 +1086,7 @@ void loop() {
     Atendido_m1c = false;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras (3);
+    reproductor(3);
 
   }
 
@@ -1106,7 +1095,7 @@ void loop() {
     Atendido_m1c = true;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m1c == true) && (Solicitud_m1c == true) && (valor_m1 == 3)) //
@@ -1125,7 +1114,7 @@ void loop() {
     Atendido_m1d = false;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras (4);
+    reproductor(4);
   }
 
   if ((Atendido_m1d == false) && (Solicitud_m1d == true) && (valor_m1 == 4)) //
@@ -1133,7 +1122,7 @@ void loop() {
     Atendido_m1d = true;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m1d == true) && (Solicitud_m1d == true) && (valor_m1 == 4)) //
@@ -1151,7 +1140,7 @@ void loop() {
     Atendido_m1e = false;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras (5);
+    reproductor(5);
   }
 
   if ((Atendido_m1e == false) && (Solicitud_m1e == true) && (valor_m1 == 5)) //
@@ -1159,7 +1148,7 @@ void loop() {
     Atendido_m1e = true;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m1e == true) && (Solicitud_m1e == true) && (valor_m1 == 5)) //
@@ -1177,7 +1166,7 @@ void loop() {
     Atendido_m1f = false;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras (6);
+    reproductor(6);
   }
 
   if ((Atendido_m1f == false) && (Solicitud_m1f == true) && (valor_m1 == 6)) //
@@ -1185,7 +1174,7 @@ void loop() {
     Atendido_m1f = true;
     delay(200);
     valor_m1 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m1f == true) && (Solicitud_m1f == true) && (valor_m1 == 6)) //
@@ -1215,7 +1204,7 @@ void loop() {
     Atendido_m2a = false;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras (1);
+    reproductor(1);
   }
 
   if ((Atendido_m2a == false) && (Solicitud_m2a == true) && (valor_m2 == 1)) //
@@ -1223,7 +1212,7 @@ void loop() {
     Atendido_m2a = true;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m2a == true) && (Solicitud_m2a == true) && (valor_m2 == 1)) //
@@ -1242,7 +1231,7 @@ void loop() {
     Atendido_m2b = false;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras (2);
+    reproductor(2);
   }
 
   if ((Atendido_m2b == false) && (Solicitud_m2b == true) && (valor_m2 == 2)) //
@@ -1250,7 +1239,7 @@ void loop() {
     Atendido_m2b = true;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m2b == true) && (Solicitud_m2b == true) && (valor_m2 == 2)) //
@@ -1269,7 +1258,7 @@ void loop() {
     Atendido_m2c = false;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras (3);
+    reproductor(3);
   }
 
   if ((Atendido_m2c == false) && (Solicitud_m2c == true) && (valor_m2 == 3)) //
@@ -1277,7 +1266,7 @@ void loop() {
     Atendido_m2c = true;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m2c == true) && (Solicitud_m2c == true) && (valor_m2 == 3)) //
@@ -1296,7 +1285,7 @@ void loop() {
     Atendido_m2d = false;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras (4);
+    reproductor(4);
   }
 
   if ((Atendido_m2d == false) && (Solicitud_m2d == true) && (valor_m2 == 4)) //
@@ -1304,7 +1293,7 @@ void loop() {
     Atendido_m2d = true;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m2d == true) && (Solicitud_m2d == true) && (valor_m2 == 4)) //
@@ -1323,7 +1312,7 @@ void loop() {
     Atendido_m2e = false;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras (5);
+    reproductor(5);
   }
 
   if ((Atendido_m2e == false) && (Solicitud_m2e == true) && (valor_m2 == 5)) //
@@ -1331,7 +1320,7 @@ void loop() {
     Atendido_m2e = true;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m2e == true) && (Solicitud_m2e == true) && (valor_m2 == 5)) //
@@ -1350,7 +1339,7 @@ void loop() {
     Atendido_m2f = false;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras (6);
+    reproductor(6);
   }
 
   if ((Atendido_m2f == false) && (Solicitud_m2f == true) && (valor_m2 == 6)) //
@@ -1358,7 +1347,7 @@ void loop() {
     Atendido_m2f = true;
     delay(200);
     valor_m2 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m2f == true) && (Solicitud_m2f == true) && (valor_m2 == 6)) //
@@ -1389,7 +1378,7 @@ void loop() {
     Atendido_m3a = false;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras (1);
+    reproductor(1);
 
   }
 
@@ -1398,7 +1387,7 @@ void loop() {
     Atendido_m3a = true;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m3a == true) && (Solicitud_m3a == true) && (valor_m3 == 1)) //
@@ -1417,7 +1406,7 @@ void loop() {
     Atendido_m3b = false;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras (2);
+    reproductor(2);
   }
 
   if ((Atendido_m3b == false) && (Solicitud_m3b == true) && (valor_m3 == 2)) //
@@ -1425,7 +1414,7 @@ void loop() {
     Atendido_m3b = true;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m3b == true) && (Solicitud_m3b == true) && (valor_m3 == 2)) //
@@ -1443,7 +1432,7 @@ void loop() {
     Atendido_m3c = false;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras (3);
+    reproductor(3);
   }
 
   if ((Atendido_m3c == false) && (Solicitud_m3c == true) && (valor_m3 == 3)) //
@@ -1451,7 +1440,7 @@ void loop() {
     Atendido_m3c = true;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m3c == true) && (Solicitud_m3c == true) && (valor_m3 == 3)) //
@@ -1470,7 +1459,7 @@ void loop() {
     Atendido_m3d = false;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras (4);
+    reproductor(4);
   }
 
   if ((Atendido_m3d == false) && (Solicitud_m3d == true) && (valor_m3 == 4)) //
@@ -1478,7 +1467,7 @@ void loop() {
     Atendido_m3d = true;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m3d == true) && (Solicitud_m3d == true) && (valor_m3 == 4)) //
@@ -1498,7 +1487,7 @@ void loop() {
     Atendido_m3e = false;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras (5);
+    reproductor(5);
   }
 
   if ((Atendido_m3e == false) && (Solicitud_m3e == true) && (valor_m3 == 5)) //
@@ -1506,7 +1495,7 @@ void loop() {
     Atendido_m3e = true;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m3e == true) && (Solicitud_m3e == true) && (valor_m3 == 5)) //
@@ -1526,7 +1515,7 @@ void loop() {
     Atendido_m3f = false;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras (6);
+    reproductor(6);
   }
 
   if ((Atendido_m3f == false) && (Solicitud_m3f == true) && (valor_m3 == 6)) //
@@ -1534,7 +1523,7 @@ void loop() {
     Atendido_m3f = true;
     delay(200);
     valor_m3 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m3f == true) && (Solicitud_m3f == true) && (valor_m3 == 6)) //
@@ -1565,7 +1554,7 @@ void loop() {
     Atendido_m4a = false;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras (1);
+    reproductor(1);
   }
 
   if ((Atendido_m4a == false) && (Solicitud_m4a == true) && (valor_m4 == 1)) //
@@ -1573,7 +1562,7 @@ void loop() {
     Atendido_m4a = true;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m4a == true) && (Solicitud_m4a == true) && (valor_m4 == 1)) //
@@ -1592,7 +1581,7 @@ void loop() {
     Atendido_m4b = false;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras (2);
+    reproductor(2);
   }
 
   if ((Atendido_m4b == false) && (Solicitud_m4b == true) && (valor_m4 == 2)) //
@@ -1600,7 +1589,7 @@ void loop() {
     Atendido_m4b = true;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m4b == true) && (Solicitud_m4b == true) && (valor_m4 == 2)) //
@@ -1618,7 +1607,7 @@ void loop() {
     Atendido_m4c = false;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras (3);
+    reproductor(3);
   }
 
   if ((Atendido_m4c == false)  && (Solicitud_m4c == true) && (valor_m4 == 3)) //
@@ -1626,7 +1615,7 @@ void loop() {
     Atendido_m4c = true;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m4c == true)  && (Solicitud_m4c == true) && (valor_m4 == 3)) //
@@ -1645,7 +1634,7 @@ void loop() {
     Atendido_m4d = false;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras (4);
+    reproductor(4);
   }
 
   if ((Atendido_m4d == false) && (Solicitud_m4d == true) && (valor_m4 == 4)) //
@@ -1653,7 +1642,7 @@ void loop() {
     Atendido_m4d = true;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m4d == true) && (Solicitud_m4d == true) && (valor_m4 == 4)) //
@@ -1672,7 +1661,7 @@ void loop() {
     Atendido_m4e = false;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras (5);
+    reproductor(5);
   }
 
   if ((Atendido_m4e == false) && (Solicitud_m4e == true) && (valor_m4 == 5)) //
@@ -1680,7 +1669,7 @@ void loop() {
     Atendido_m4e = true;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m4e == true) && (Solicitud_m4e == true) && (valor_m4 == 5)) //
@@ -1699,7 +1688,7 @@ void loop() {
     Atendido_m4f = false;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras (6);
+    reproductor(6);
   }
 
   if ((Atendido_m4f == false) && (Solicitud_m4f == true) && (valor_m4 == 6)) //
@@ -1707,7 +1696,7 @@ void loop() {
     Atendido_m4f = true;
     delay(200);
     valor_m4 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m4f == true) && (Solicitud_m4f == true) && (valor_m4 == 6)) //
@@ -1737,7 +1726,7 @@ void loop() {
     Atendido_m5a = false;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras (1);
+    reproductor(1);
   }
 
   if ((Atendido_m5a == false) && (Solicitud_m5a == true) && (valor_m5 == 1)) //
@@ -1745,7 +1734,7 @@ void loop() {
     Atendido_m5a = true;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m5a == true) && (Solicitud_m5a == true) && (valor_m5 == 1)) //
@@ -1764,7 +1753,7 @@ void loop() {
     Atendido_m5b = false;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras (2);
+    reproductor(2);
   }
 
   if ((Atendido_m5b == false) && (Solicitud_m5b == true) && (valor_m5 == 2)) //
@@ -1772,7 +1761,7 @@ void loop() {
     Atendido_m5b = true;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m5b == true) && (Solicitud_m5b == true) && (valor_m5 == 2)) //
@@ -1790,7 +1779,7 @@ void loop() {
     Atendido_m5c = false;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras (3);
+    reproductor(3);
   }
 
   if ((Atendido_m5c == false) && (Solicitud_m5c == true) && (valor_m5 == 3)) //
@@ -1798,7 +1787,7 @@ void loop() {
     Atendido_m5c = true;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m5c == true) && (Solicitud_m5c == true) && (valor_m5 == 3)) //
@@ -1819,7 +1808,7 @@ void loop() {
     Atendido_m5d = false;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras (4);
+    reproductor(4);
   }
 
   if ((Atendido_m5d == false) && (Solicitud_m5d == true) && (valor_m5 == 4)) //
@@ -1827,7 +1816,7 @@ void loop() {
     Atendido_m5d = true;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m5d == true) && (Solicitud_m5d == true) && (valor_m5 == 4)) //
@@ -1846,7 +1835,7 @@ void loop() {
     Atendido_m5e = false;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras (5);
+    reproductor(5);
   }
 
   if ((Atendido_m5e == false) && (Solicitud_m5e == true) && (valor_m5 == 5)) //
@@ -1854,7 +1843,7 @@ void loop() {
     Atendido_m5e = true;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m5e == true) && (Solicitud_m5e == true) && (valor_m5 == 5)) //
@@ -1873,7 +1862,7 @@ void loop() {
     Atendido_m5f = false;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras (6);
+    reproductor(6);
   }
 
   if ((Atendido_m5f == false) && (Solicitud_m5f == true) && (valor_m5 == 6)) //
@@ -1881,7 +1870,7 @@ void loop() {
     Atendido_m5f = true;
     delay(200);
     valor_m5 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m5f == true) && (Solicitud_m5f == true) && (valor_m5 == 6)) //
@@ -1912,7 +1901,7 @@ void loop() {
     Atendido_m6a = false;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras (1);
+    reproductor(1);
   }
 
   if ((Atendido_m6a == false) && (Solicitud_m6a == true) && (valor_m6 == 1)) //
@@ -1920,7 +1909,7 @@ void loop() {
     Atendido_m6a = true;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
 
@@ -1941,7 +1930,7 @@ void loop() {
     Atendido_m6b = false;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras (2);
+    reproductor(2);
   }
 
   if ((Atendido_m6b == false) && (Solicitud_m6b == true) && (valor_m6 == 2)) //
@@ -1949,7 +1938,7 @@ void loop() {
     Atendido_m6b = true;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m6b == true) && (Solicitud_m6b == true) && (valor_m6 == 2)) //
@@ -1968,7 +1957,7 @@ void loop() {
     Atendido_m6c = false;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras (3);
+    reproductor(3);
   }
 
   if ((Atendido_m6c == false) && (Solicitud_m6c == true) && (valor_m6 == 3)) //
@@ -1976,7 +1965,7 @@ void loop() {
     Atendido_m6c = true;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m6c == true) && (Solicitud_m6c == true) && (valor_m6 == 3)) //
@@ -1996,7 +1985,7 @@ void loop() {
     Atendido_m6d = false;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras (4);
+    reproductor(4);
   }
 
   if ((Atendido_m6d == false) && (Solicitud_m6d == true) && (valor_m6 == 4)) //
@@ -2004,7 +1993,7 @@ void loop() {
     Atendido_m6d = true;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m6d == true) && (Solicitud_m6d == true) && (valor_m6 == 4)) //
@@ -2023,7 +2012,7 @@ void loop() {
     Atendido_m6e = false;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras (5);
+    reproductor(5);
   }
 
   if ((Atendido_m6e == false) && (Solicitud_m6e == true) && (valor_m6 == 5)) //
@@ -2031,7 +2020,7 @@ void loop() {
     Atendido_m6e = true;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m6e == true) && (Solicitud_m6e == true) && (valor_m6 == 5)) //
@@ -2050,7 +2039,7 @@ void loop() {
     Atendido_m6f = false;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras (6);
+    reproductor(6);
   }
 
   if ((Atendido_m6f == false) && (Solicitud_m6f == true) && (valor_m6 == 6)) //
@@ -2058,7 +2047,7 @@ void loop() {
     Atendido_m6f = true;
     delay(200);
     valor_m6 = 0;
-    alarmas_sonoras2();
+    revision_alarmas();
   }
 
   if ((Atendido_m6f == true) && (Solicitud_m6f == true) && (valor_m6 == 6)) //
@@ -2097,14 +2086,14 @@ void loop() {
       if (Alarmas_activas1 == 0)
       {
         Alarmas_actual1 = Alarmas_activas1;
-        alarmas_sonoras2();
+        revision_alarmas();
       }
       else
       {
         Alarmas_actual1 = Alarmas_activas1;
-        alarmas_sonoras (Alarmas_activas1);
+        reproductor(Alarmas_activas1);
       }
-      // alarmas_sonoras (Alarmas_activas1);
+      // reproductor(Alarmas_activas1);
 
     }
   }
@@ -2122,12 +2111,12 @@ void loop() {
       if (Alarmas_activas2 == 0)
       {
         Alarmas_actual2 = Alarmas_activas2;
-        alarmas_sonoras2();
+        revision_alarmas();
       }
       else
       {
         Alarmas_actual2 = Alarmas_activas2;
-        alarmas_sonoras (Alarmas_activas2);
+        reproductor(Alarmas_activas2);
       }
     }
   }
@@ -2147,7 +2136,7 @@ void printDetail(uint8_t type, int value) {
       break;
     case DFPlayerCardInserted:
       Serial.println(F("Card Inserted!"));
-      //  alarmas_sonoras2();
+      //  revision_alarmas();
       break;
     case DFPlayerCardRemoved:
       Serial.println(F("Card Removed!"));
@@ -2195,63 +2184,30 @@ void printDetail(uint8_t type, int value) {
 // ****************************************************************************************************
 
 // ****************************************************************************************************
-void alarmas_sonoras (int play)
-{
-  if (play != playerSong) {
+void reproductor (int folder, int file) {
     myDFPlayer.start();  //start the mp3 from the pause
     delay(100);
-    myDFPlayer.play(play);  //Play the first mp3
+    myDFPlayer.playFolder(folder, file);
     delay(100);
     myDFPlayer.enableLoop();
     delay(100);
-    playerSong = play;
-  }
-
 }
-// ****************************************************************************************************
 
-
-// ********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
-
-void alarmas_sonoras2()
+void revision_alarmas()
 {
-  if (((Atendido_m1a == false) && (Solicitud_m1a == true)) || ((Atendido_m2a == false) && (Solicitud_m2a == true)) || ((Atendido_m3a == false) && (Solicitud_m3a == true)) || ((Atendido_m4a == false) && (Solicitud_m4a == true)) || ((Atendido_m5a == false) && (Solicitud_m5a == true)) || ((Atendido_m6a == false) && (Solicitud_m6a == true)) || ((Alarmas_activas1 == 1) ) || ((Alarmas_activas2 == 1))) // poner or con las demas maquinas
-  {
-    alarmas_sonoras (1);
+  int numMaquina, numAlarma;
+  for(numMaquina = 0; 0 < 6; numMaquina++){
+    for(numAlarma = 0; 0 < 6; numAlarma++){
+      if( solicitados[numMaquina][numAlarma] == false && atendidos[numMaquina][numAlarma] == true){
+        reproductor(numMaquina, numAlarma) ;
+        numMaquina = 6; // termina el ciclo de maquina
+        numAlarma = 6; // termina el ciclo de Alarma 
+      }
+       else {
+        myDFPlayer.pause();  //pause the mp3
+      }
+    }
   }
-  else  if (((Atendido_m1b == false) && (Solicitud_m1b == true)) || ((Atendido_m2b == false) && (Solicitud_m2b == true)) || ((Atendido_m3b == false) && (Solicitud_m3b == true)) || ((Atendido_m4b == false) && (Solicitud_m4b == true)) || ((Atendido_m5b == false) && (Solicitud_m5b == true)) || ((Atendido_m6b == false) && (Solicitud_m6b == true)) || ((Alarmas_activas1 == 2) ) || ((Alarmas_activas2 == 2)))
-  {
-    alarmas_sonoras (2);
-
-  }
-  else  if (((Atendido_m1c == false) && (Solicitud_m1c == true)) || ((Atendido_m2c == false) && (Solicitud_m2c == true)) || ((Atendido_m3c == false) && (Solicitud_m3c == true)) || ((Atendido_m4c == false) && (Solicitud_m4c == true)) || ((Atendido_m5c == false) && (Solicitud_m5c == true)) || ((Atendido_m6c == false) && (Solicitud_m6c == true)) || ((Alarmas_activas1 == 3) ) || ((Alarmas_activas2 == 3)))
-  {
-    alarmas_sonoras (3);
-
-  }
-  else  if (((Atendido_m1d == false) && (Solicitud_m1d == true)) || ((Atendido_m2d == false) && (Solicitud_m2d == true)) || ((Atendido_m3d == false) && (Solicitud_m3d == true)) || ((Atendido_m4d == false) && (Solicitud_m4d == true)) || ((Atendido_m5d == false) && (Solicitud_m5d == true)) || ((Atendido_m6d == false) && (Solicitud_m6d == true)) || ((Alarmas_activas1 == 4) ) || ((Alarmas_activas2 == 4)))
-  {
-    alarmas_sonoras (4);
-
-  }
-  else  if (((Atendido_m1e == false) && (Solicitud_m1e == true)) || ((Atendido_m2e == false) && (Solicitud_m2e == true)) || ((Atendido_m3e == false) && (Solicitud_m3e == true)) || ((Atendido_m4e == false) && (Solicitud_m4e == true)) || ((Atendido_m5e == false) && (Solicitud_m5e == true)) || ((Atendido_m6e == false) && (Solicitud_m6e == true)) || ((Alarmas_activas1 == 5) ) || ((Alarmas_activas2 == 5)))
-  {
-    alarmas_sonoras (5);
-
-  }
-  else  if (((Atendido_m1f == false) && (Solicitud_m1f == true)) || ((Atendido_m2f == false) && (Solicitud_m2f == true)) || ((Atendido_m3f == false) && (Solicitud_m3f == true)) || ((Atendido_m4f == false) && (Solicitud_m4f == true)) || ((Atendido_m5f == false) && (Solicitud_m5f == true)) || ((Atendido_m6f == false) && (Solicitud_m6f == true)) || ((Alarmas_activas1 == 6) ) || ((Alarmas_activas2 == 6)))
-  {
-    alarmas_sonoras (6);
-
-  }
-
-  else
-  {
-    //myDFPlayer.sleep();
-    playerSong = 0;
-    myDFPlayer.pause();  //pause the mp3
-  }
-
 }
 
 // ********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
